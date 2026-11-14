@@ -3,17 +3,95 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cerros Orientales, riesgo en el borde</title>
-<style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:#EEF1EC;color:#1E3B2F;font-family:system-ui,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
-h1{font-size:clamp(28px,5vw,48px);margin:0 0 12px}
-p{font-size:18px;margin:0;color:#3F5A4A}
-</style>
+<title>Cerros Orientales: riesgo de incendio en el borde de Bogotá</title>
+<meta name="description" content="Dónde podría empezar un incendio forestal en el borde de los Cerros Orientales y a quién afectaría. Arma tu propio mapa de riesgo.">
+<meta property="og:title" content="Cerros Orientales: riesgo de incendio en el borde de Bogotá">
+<meta property="og:description" content="Dónde podría empezar un incendio forestal en el borde de los Cerros Orientales y a quién afectaría. Arma tu propio mapa de riesgo.">
+<meta name="theme-color" content="#F2C230">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<main>
-<h1>Cerros Orientales, riesgo en el borde</h1>
-<p>Página en construcción.</p>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera">
+<div class="envoltura">
+<a class="marca" href="index.html"><svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 21 L11 6 L16 13 L23 2 L33 21 Z" fill="#2F6B4F"/><path d="M1 21 L33 21" stroke="#1C2A22" stroke-width="2"/><rect x="3" y="15" width="5" height="6" fill="#A8402C"/></svg><span>Cerros Orientales</span></a>
+<button class="boton-menu" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+<nav aria-label="Principal"><ul class="menu" id="menu"><li><a href="index.html" aria-current="page">Inicio</a></li><li><a href="investigacion.html">La investigación</a></li><li><a href="categoria.html">Explora una categoría</a></li><li><a href="modelo.html">Explora el modelo</a></li><li><a href="metodologia.html">Cómo se hizo</a></li></ul></nav>
+</div>
+</header>
+<main id="contenido">
+<section class="portada" aria-labelledby="titulo-portada">
+<div class="envoltura">
+<div>
+<h1 id="titulo-portada" class="entra">Los cerros también son tu barrio</h1>
+<p class="entrada entra entra-2">¿Dónde podría empezar un incendio forestal y a quién afectaría? Conoce lo que encontramos en el borde entre Bogotá y sus cerros, y arma tu propio mapa con lo que tú consideras más importante.</p>
+<div class="botones entra entra-3">
+<a class="boton boton-principal" href="modelo.html">Arma tu mapa</a>
+<a class="boton boton-secundario" href="investigacion.html">Lo que encontramos</a>
+</div>
+<p class="dato entra entra-4">El área de estudio va de Usaquén a Usme y cubre unos 179 km² de borde urbano y forestal.</p>
+</div>
+<div class="tablero entra entra-3">
+<div class="mapa" id="mapa-portada" role="img" aria-label="Mapa del riesgo de incendio en el área de estudio, cambia con los controles de abajo"></div>
+<div class="controles">
+<p class="controles-titulo">¿Qué pesa más para ti?</p>
+<div class="control"><div class="control-fila"><label for="p-veg">Vegetación y combustible</label><output for="p-veg" id="o-veg">5 de 10</output></div><input id="p-veg" type="range" min="0" max="10" step="1" value="5" data-cat="veg"></div>
+<div class="control"><div class="control-fila"><label for="p-relieve">Pendiente y forma del terreno</label><output for="p-relieve" id="o-relieve">5 de 10</output></div><input id="p-relieve" type="range" min="0" max="10" step="1" value="5" data-cat="relieve"></div>
+<div class="control"><div class="control-fila"><label for="p-ignicion">Vías y senderos cerca del bosque</label><output for="p-ignicion" id="o-ignicion">5 de 10</output></div><input id="p-ignicion" type="range" min="0" max="10" step="1" value="5" data-cat="ignicion"></div>
+<div id="leyenda-portada"></div>
+<p class="nota">Mapa con datos de prueba. Lo demás queda con el mismo peso.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="seccion fondo-niebla" aria-labelledby="titulo-tres">
+<div class="envoltura">
+<h2 id="titulo-tres">El riesgo se arma con tres preguntas</h2>
+<p class="bajada">Un incendio en el cerro no pone en riesgo a todos por igual. Para saber dónde actuar primero, la investigación mira tres cosas a la vez.</p>
+<div class="tres">
+<div><h3>Amenaza</h3><p>¿Qué tan fácil es que el fuego empiece y se extienda? Aquí cuentan la vegetación, el clima, la pendiente y los incendios que ya han pasado.</p></div>
+<div><h3>Exposición</h3><p>¿Quiénes y qué están en su camino? Viviendas, colegios, jardines infantiles, centros de salud, tanques de agua y redes de energía.</p></div>
+<div><h3>Vulnerabilidad de borde</h3><p>¿Qué tan preparado está el barrio para resistir y responder? Materiales de las casas, condiciones sociales y qué tan rápido llega la ayuda.</p></div>
+</div>
+<p class="formula"><strong>Riesgo = raíz cúbica de (amenaza × exposición × vulnerabilidad).</strong> Si donde hay fuego no hay nada expuesto, el riesgo es cero.</p>
+</div>
+</section>
+
+<section class="seccion" aria-labelledby="titulo-explora">
+<div class="envoltura">
+<h2 id="titulo-explora">Dos formas de armar tu mapa</h2>
+<p class="bajada">Cada persona le da una importancia distinta a cada factor. Cambia los pesos y mira qué zonas siguen en riesgo alto sin importar lo que elijas.</p>
+<div class="dos">
+<a class="enlace-grande" href="categoria.html"><h3>Explora una categoría</h3><p>Escoge un tema, por ejemplo el clima o la capacidad de respuesta, y mira cómo cambia su mapa al mover el peso de cada capa.</p><span class="cifra">13 categorías</span><span class="ver">Ir a categorías</span></a>
+<a class="enlace-grande" href="modelo.html"><h3>Explora el modelo completo</h3><p>Todas las capas y categorías juntas. Ajusta los pesos y mira los mapas de amenaza, exposición, vulnerabilidad y riesgo.</p><span class="cifra">44 capas en 3 componentes</span><span class="ver">Ir al modelo</span></a>
+</div>
+</div>
+</section>
+
+<section class="seccion fondo-oscuro" aria-labelledby="titulo-cierre">
+<div class="envoltura cierre">
+<div>
+<h2 id="titulo-cierre">Los resultados de la investigación</h2>
+<p class="bajada">Los mapas oficiales salen de una encuesta a técnicos y a personas de las seis localidades del borde. Allí también explicamos qué significan para la planeación de la ciudad.</p>
+</div>
+<div class="botones"><a class="boton boton-principal" href="investigacion.html">Ver la investigación</a><a class="boton boton-secundario" href="metodologia.html">Cómo se hizo</a></div>
+</div>
+</section>
 </main>
+<svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" class="silueta" aria-hidden="true"><path d="M0 300 L0 270 L12 270 L24 270 L36 270 L48 270 L60 270 L72 270 L84 270 L96 270 L108 270 L120 270 L132 270 L144 270 L156 270 L168 270 L180 270 L192 270 L204 270 L216 270 L228 270 L240 270 L252 270 L264 270 L276 270 L288 270 L300 270 L312 270 L324 270 L336 270 L348 270 L360 270 L372 270 L384 270 L396 270 L408 270 L420 270 L432 270 L444 270 L456 270 L468 270 L480 270 L492 270 L504 270 L516 270 L528 270 L540 270 L552 269 L564 267 L576 265 L588 263 L600 260 L612 258 L624 255 L636 252 L648 250 L660 247 L672 244 L684 241 L696 239 L708 236 L720 233 L732 230 L744 228 L756 225 L768 222 L780 220 L792 217 L804 215 L816 213 L828 211 L840 209 L852 207 L864 205 L876 203 L888 201 L900 199 L912 196 L924 194 L936 191 L948 188 L960 185 L972 182 L984 179 L996 177 L1008 174 L1020 171 L1032 169 L1044 166 L1056 164 L1068 161 L1080 158 L1092 155 L1104 151 L1116 147 L1128 143 L1140 138 L1152 133 L1164 128 L1176 123 L1188 118 L1200 114 L1212 109 L1224 105 L1236 102 L1248 99 L1260 96 L1272 94 L1284 92 L1296 91 L1308 89 L1320 87 L1332 86 L1344 83 L1356 81 L1368 78 L1380 75 L1392 72 L1404 69 L1416 66 L1428 63 L1440 61 L1440 300 Z" fill="#2F6B4F"></path><rect x="8" y="226" width="26" height="86" fill="#A8402C"></rect><rect x="38" y="226" width="34" height="86" fill="#A8402C"></rect><path d="M36 226 L55 214 L74 226 Z" fill="#7E2E1F"></path><rect x="74" y="242" width="34" height="70" fill="#A8402C"></rect><rect x="110" y="226" width="34" height="86" fill="#A8402C"></rect><rect x="148" y="248" width="34" height="64" fill="#A8402C"></rect><path d="M146 248 L165 236 L184 248 Z" fill="#7E2E1F"></path><rect x="184" y="254" width="34" height="58" fill="#A8402C"></rect><rect x="220" y="226" width="26" height="86" fill="#A8402C"></rect><path d="M218 226 L233 214 L248 226 Z" fill="#7E2E1F"></path><rect x="248" y="234" width="30" height="78" fill="#A8402C"></rect><rect x="282" y="234" width="34" height="78" fill="#A8402C"></rect><rect x="322" y="248" width="34" height="64" fill="#A8402C"></rect><rect x="358" y="248" width="22" height="64" fill="#A8402C"></rect><path d="M356 248 L369 236 L382 248 Z" fill="#7E2E1F"></path><rect x="384" y="242" width="34" height="70" fill="#A8402C"></rect><path d="M382 242 L401 230 L420 242 Z" fill="#7E2E1F"></path><rect x="422" y="226" width="30" height="86" fill="#A8402C"></rect><rect x="458" y="242" width="26" height="70" fill="#A8402C"></rect><rect x="486" y="226" width="30" height="86" fill="#A8402C"></rect><rect x="518" y="226" width="30" height="86" fill="#A8402C"></rect><rect x="554" y="243" width="22" height="64" fill="#A8402C"></rect><rect x="582" y="230" width="30" height="70" fill="#A8402C"></rect><path d="M580 230 L597 218 L614 230 Z" fill="#7E2E1F"></path><rect x="616" y="233" width="34" height="58" fill="#A8402C"></rect><path d="M614 233 L633 221 L652 233 Z" fill="#7E2E1F"></path><rect x="652" y="219" width="34" height="64" fill="#A8402C"></rect><path d="M650 219 L669 207 L688 219 Z" fill="#7E2E1F"></path><rect x="690" y="216" width="34" height="58" fill="#A8402C"></rect><path d="M688 216 L707 204 L726 216 Z" fill="#7E2E1F"></path><rect x="730" y="190" width="22" height="78" fill="#A8402C"></rect><rect x="756" y="175" width="30" height="86" fill="#A8402C"></rect><path d="M754 175 L771 163 L788 175 Z" fill="#7E2E1F"></path></svg><footer class="pie">
+<div class="envoltura">
+<p>Tesis de la Maestría en Planeación Urbana y Regional, Pontificia Universidad Javeriana.</p>
+<p>Usaquén, Chapinero, Santa Fe, La Candelaria, San Cristóbal y Usme.</p>
+</div>
+</footer>
+<script src="assets/js/comun.js"></script>
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script src="assets/js/model.js"></script>
+<script src="assets/js/mapa.js"></script>
+<script src="assets/js/portada.js"></script>
 </body>
 </html>

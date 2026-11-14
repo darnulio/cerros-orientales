@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo se hizo: modelo de riesgo de incendio en los Cerros Orientales</title>
+<meta name="description" content="Cómo se combinan las capas, las categorías y los componentes del modelo de riesgo, y de dónde salen los pesos.">
+<meta property="og:title" content="Cómo se hizo: modelo de riesgo de incendio en los Cerros Orientales">
+<meta property="og:description" content="Cómo se combinan las capas, las categorías y los componentes del modelo de riesgo, y de dónde salen los pesos.">
+<meta name="theme-color" content="#F2C230">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera">
+<div class="envoltura">
+<a class="marca" href="index.html"><svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 21 L11 6 L16 13 L23 2 L33 21 Z" fill="#2F6B4F"/><path d="M1 21 L33 21" stroke="#1C2A22" stroke-width="2"/><rect x="3" y="15" width="5" height="6" fill="#A8402C"/></svg><span>Cerros Orientales</span></a>
+<button class="boton-menu" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+<nav aria-label="Principal"><ul class="menu" id="menu"><li><a href="index.html">Inicio</a></li><li><a href="investigacion.html">La investigación</a></li><li><a href="categoria.html">Explora una categoría</a></li><li><a href="modelo.html">Explora el modelo</a></li><li><a href="metodologia.html" aria-current="page">Cómo se hizo</a></li></ul></nav>
+</div>
+</header>
+<main id="contenido">
+<section class="cabeza-pagina" aria-labelledby="titulo-pagina">
+<div class="envoltura">
+<h1 id="titulo-pagina">Cómo se hizo</h1>
+<p>El mapa de riesgo se construye en tres pasos, de lo más detallado a lo más general.</p>
+</div>
+</section>
+<section class="seccion" aria-labelledby="titulo-pasos">
+<div class="envoltura lectura">
+<h2 id="titulo-pasos">Tres pasos para llegar al riesgo</h2>
+<ol>
+<li><strong>De las capas a las categorías.</strong> Cada capa del territorio, como la pendiente o la densidad de construcciones, se califica de 1 a 5. Las capas de un mismo tema se suman según su peso y forman una categoría, por ejemplo Clima o Capacidad de respuesta.</li>
+<li><strong>De las categorías a los componentes.</strong> Las categorías se suman según su peso y forman los tres componentes: amenaza, exposición y vulnerabilidad de borde.</li>
+<li><strong>De los componentes al riesgo.</strong> El riesgo es la raíz cúbica de amenaza por exposición por vulnerabilidad. En este paso no hay pesos: los tres componentes cuentan igual.</li>
+</ol>
+<h2>De dónde salen los pesos</h2>
+<p>Los pesos oficiales salen de una encuesta con dos grupos. Los técnicos, como integrantes de los consejos locales de gestión del riesgo y personal de entidades públicas, comparan las variables por pares con el método de Saaty. La comunidad de las seis localidades del borde las ordena con preguntas sencillas. Los dos resultados se combinan.</p>
+<p>En las páginas para explorar puedes poner tus propios pesos. Eso no cambia el resultado oficial: sirve para ver qué zonas quedan en riesgo alto con casi cualquier combinación y cuáles dependen de lo que cada quien considera importante.</p>
+<h2>Algunas reglas del modelo</h2>
+<ul>
+<li>La exposición va de 0 a 5. Donde no hay nada expuesto vale 0, y entonces el riesgo también es 0.</li>
+<li>Los mapas se dividen en cinco clases de igual tamaño, de muy baja a muy alta, para poder compararlos entre sí.</li>
+<li>La pendiente y la densidad de construcciones aparecen en dos componentes porque cumplen dos papeles distintos. En los dos casos es la misma capa.</li>
+</ul>
+<h2>Sobre los datos de esta versión</h2>
+<p>Por ahora los mapas de las páginas para explorar usan datos de prueba sobre el contorno real del área de estudio. Se reemplazarán por las capas de la investigación cuando estén listas.</p>
+</div>
+</section>
+</main>
+<footer class="pie">
+<div class="envoltura">
+<p>Tesis de la Maestría en Planeación Urbana y Regional, Pontificia Universidad Javeriana.</p>
+<p>Usaquén, Chapinero, Santa Fe, La Candelaria, San Cristóbal y Usme.</p>
+</div>
+</footer>
+<script src="assets/js/comun.js"></script>
+</body>
+</html>

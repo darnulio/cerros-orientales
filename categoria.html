@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explora una categoría: riesgo de incendio en los Cerros Orientales</title>
+<meta name="description" content="Escoge una categoría del modelo de riesgo y cambia el peso de cada capa para ver su mapa.">
+<meta property="og:title" content="Explora una categoría: riesgo de incendio en los Cerros Orientales">
+<meta property="og:description" content="Escoge una categoría del modelo de riesgo y cambia el peso de cada capa para ver su mapa.">
+<meta name="theme-color" content="#F2C230">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera">
+<div class="envoltura">
+<a class="marca" href="index.html"><svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 21 L11 6 L16 13 L23 2 L33 21 Z" fill="#2F6B4F"/><path d="M1 21 L33 21" stroke="#1C2A22" stroke-width="2"/><rect x="3" y="15" width="5" height="6" fill="#A8402C"/></svg><span>Cerros Orientales</span></a>
+<button class="boton-menu" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+<nav aria-label="Principal"><ul class="menu" id="menu"><li><a href="index.html">Inicio</a></li><li><a href="investigacion.html">La investigación</a></li><li><a href="categoria.html" aria-current="page">Explora una categoría</a></li><li><a href="modelo.html">Explora el modelo</a></li><li><a href="metodologia.html">Cómo se hizo</a></li></ul></nav>
+</div>
+</header>
+<main id="contenido">
+<section class="cabeza-pagina cabeza-compacta" aria-labelledby="titulo-pagina">
+<div class="envoltura">
+<h1 id="titulo-pagina">Explora una categoría</h1>
+<p>Escoge un tema y decide cuánto pesa cada capa. El mapa muestra cómo queda esa categoría con tus pesos.</p>
+</div>
+</section>
+<div class="envoltura herramienta">
+<div class="panel">
+<div class="panel-caja">
+<label class="etiqueta" for="selector">Categoría</label>
+<select id="selector"></select>
+<p class="nota" id="pertenece"></p>
+</div>
+<div class="panel-caja">
+<h2>Peso de cada capa</h2>
+<div id="controles" class="controles-variables"></div>
+<button class="boton boton-secundario boton-pequeno" type="button" id="reiniciar">Volver a pesos iguales</button>
+</div>
+</div>
+<div class="vista">
+<div class="mapa" id="mapa" role="img" aria-label="Mapa de la categoría escogida en el área de estudio"></div>
+<div class="vista-pie"><div id="leyenda"></div><p class="nota">Datos de prueba.</p></div>
+</div>
+</div>
+</main>
+<footer class="pie">
+<div class="envoltura">
+<p>Tesis de la Maestría en Planeación Urbana y Regional, Pontificia Universidad Javeriana.</p>
+<p>Usaquén, Chapinero, Santa Fe, La Candelaria, San Cristóbal y Usme.</p>
+</div>
+</footer>
+<script src="assets/js/comun.js"></script>
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script src="assets/js/model.js"></script>
+<script src="assets/js/mapa.js"></script>
+<script src="assets/js/categoria.js"></script>
+</body>
+</html>
