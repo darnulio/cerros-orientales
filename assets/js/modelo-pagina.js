@@ -1,5 +1,6 @@
 (async function () {
-  const vista = await Mapa.crear(document.getElementById('mapa'));
+  const vista = await Mapa.crear(document.getElementById('mapa'), { cambiarModo: true, etiqueta: 'Riesgo' });
+  const titulos = { R: 'Riesgo', A: 'Amenaza', E: 'Exposición', V: 'Vulnerabilidad' };
   const panel = document.getElementById('panel');
   let pesos = Modelo.pesosIguales();
   let ver = 'R';
@@ -50,10 +51,11 @@
   }
 
   let pendiente = false;
-  function pintar() {
+  function pintar(suave) {
     pendiente = false;
     const r = Modelo.calcular(pesos);
-    const { cuenta, total } = vista.pintar(r[ver]);
+    vista.etiqueta(titulos[ver]);
+    const { cuenta, total } = vista.pintar(r[ver], suave === true);
     Mapa.leyenda(document.getElementById('leyenda'), ver === 'E' || ver === 'R');
     const alto = Math.round((cuenta[3] + cuenta[4]) / total * 100);
     document.getElementById('resumen').innerHTML = `Con tus pesos, <strong>${alto} %</strong> del área queda con ${nombres[ver]}.`;
@@ -63,7 +65,7 @@
   document.querySelectorAll('[data-ver]').forEach(b => b.addEventListener('click', () => {
     ver = b.dataset.ver;
     document.querySelectorAll('[data-ver]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    pintar();
+    pintar(true);
   }));
   document.getElementById('reiniciar').addEventListener('click', () => { pesos = Modelo.pesosIguales(); armar(); pintar(); });
   armar();

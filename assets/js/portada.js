@@ -1,5 +1,5 @@
 (async function () {
-  const vista = await Mapa.crear(document.getElementById('mapa-portada'), { zoom: true });
+  const vista = await Mapa.crear(document.getElementById('mapa-portada'), { modo: '3d', orbita: true, etiqueta: 'Riesgo' });
   Mapa.leyenda(document.getElementById('leyenda-portada'), true);
   const pesos = Modelo.pesosIguales();
   const entradas = document.querySelectorAll('input[data-cat]');
@@ -12,6 +12,6 @@
     });
     vista.pintar(Modelo.calcular(pesos).R);
   }
-  entradas.forEach(i => i.addEventListener('input', () => { if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); } }));
+  entradas.forEach(i => i.addEventListener('input', () => { vista.detenerGiro(); if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); } }));
   actualizar();
 })();

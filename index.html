@@ -9,9 +9,10 @@
 <meta property="og:description" content="Dónde podría empezar un incendio forestal en el borde de los Cerros Orientales y a quién afectaría. Arma tu propio mapa de riesgo.">
 <meta name="theme-color" content="#F2C230">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/vendor/lenis/lenis.css">
 <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-<link rel="stylesheet" href="assets/css/site.css?v=3">
+<link rel="stylesheet" href="assets/vendor/maplibre/maplibre-gl.css">
+<link rel="stylesheet" href="assets/css/site.css?v=4">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -48,16 +49,17 @@
 </div>
 </section>
 
-<section class="seccion fondo-niebla" aria-labelledby="titulo-tres">
-<div class="envoltura">
-<h2 id="titulo-tres">El riesgo se arma con tres preguntas</h2>
-<p class="bajada">Un incendio en el cerro no pone en riesgo a todos por igual. Para saber dónde actuar primero, la investigación mira tres cosas a la vez.</p>
-<div class="tres">
-<div><h3>Amenaza</h3><p>¿Qué tan fácil es que el fuego empiece y se extienda? Aquí cuentan la vegetación, el clima, la pendiente y los incendios que ya han pasado.</p></div>
-<div><h3>Exposición</h3><p>¿Quiénes y qué están en su camino? Viviendas, colegios, jardines infantiles, centros de salud, tanques de agua y redes de energía.</p></div>
-<div><h3>Vulnerabilidad de borde</h3><p>¿Qué tan preparado está el barrio para resistir y responder? Materiales de las casas, condiciones sociales y qué tan rápido llega la ayuda.</p></div>
+<section class="recorrido" aria-labelledby="titulo-recorrido">
+<div class="recorrido-mapa" aria-hidden="true"><div class="mapa" id="mapa-recorrido"></div><div class="recorrido-leyenda" id="leyenda-recorrido"></div></div>
+<div class="recorrido-pasos">
+<div class="paso paso-intro">
+<h2 id="titulo-recorrido">El riesgo se arma con tres preguntas</h2>
+<p>Un incendio en el cerro no pone en riesgo a todos por igual. Baja despacio y recorre el borde de Usaquén a Usme.</p>
 </div>
-<p class="formula"><strong>Riesgo = raíz cúbica de (amenaza × exposición × vulnerabilidad).</strong> Si donde hay fuego no hay nada expuesto, el riesgo es cero.</p>
+<div class="paso" data-paso="A" data-vista="usaquen"><p class="paso-num">1 de 4</p><h3>Amenaza</h3><p>¿Qué tan fácil es que el fuego empiece y se extienda? Aquí cuentan la vegetación, el clima, la pendiente y los incendios que ya han pasado.</p></div>
+<div class="paso" data-paso="E" data-vista="chapinero"><p class="paso-num">2 de 4</p><h3>Exposición</h3><p>¿Quiénes y qué están en su camino? Viviendas, colegios, jardines infantiles, centros de salud, tanques de agua y redes de energía. Donde no hay nada expuesto, el mapa queda en gris.</p></div>
+<div class="paso" data-paso="V" data-vista="sancristobal"><p class="paso-num">3 de 4</p><h3>Vulnerabilidad de borde</h3><p>¿Qué tan preparado está el barrio para resistir y responder? Materiales de las casas, condiciones sociales y qué tan rápido llega la ayuda.</p></div>
+<div class="paso" data-paso="R" data-vista="todo"><p class="paso-num">4 de 4</p><h3>Riesgo</h3><p>Las tres preguntas se combinan: raíz cúbica de amenaza por exposición por vulnerabilidad. Si donde hay fuego no hay nada expuesto, el riesgo es cero.</p></div>
 </div>
 </section>
 
@@ -88,10 +90,14 @@
 <p>Usaquén, Chapinero, Santa Fe, La Candelaria, San Cristóbal y Usme.</p>
 </div>
 </footer>
-<script src="assets/js/comun.js?v=3"></script>
-<script src="assets/vendor/leaflet/leaflet.js"></script>
-<script src="assets/js/model.js?v=3"></script>
-<script src="assets/js/mapa.js?v=3"></script>
-<script src="assets/js/portada.js?v=3"></script>
+<script src="assets/vendor/gsap/gsap.min.js"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis/lenis.min.js"></script>
+<script src="assets/js/comun.js?v=4"></script>
+<script src="assets/vendor/maplibre/maplibre-gl.js"></script>
+<script src="assets/js/model.js?v=4"></script>
+<script src="assets/js/mapa.js?v=4"></script>
+<script src="assets/js/portada.js?v=4"></script>
+<script src="assets/js/recorrido.js?v=4"></script>
 </body>
 </html>

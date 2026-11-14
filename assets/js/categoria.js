@@ -1,5 +1,5 @@
 (async function () {
-  const vista = await Mapa.crear(document.getElementById('mapa'));
+  const vista = await Mapa.crear(document.getElementById('mapa'), { cambiarModo: true });
   const selector = document.getElementById('selector');
   const caja = document.getElementById('controles');
   const pertenece = document.getElementById('pertenece');
@@ -26,10 +26,11 @@
   }
 
   let pendiente = false;
-  function pintar() {
+  function pintar(suave) {
     pendiente = false;
     const c = categorias[selector.value];
-    vista.pintar(Modelo.mapaCategoria(c, pesos));
+    vista.etiqueta(c.nombre);
+    vista.pintar(Modelo.mapaCategoria(c, pesos), suave === true);
     Mapa.leyenda(document.getElementById('leyenda'), c.componente.id === 'E');
   }
   function pedir() { if (!pendiente) { pendiente = true; requestAnimationFrame(pintar); } }
@@ -58,7 +59,7 @@
       caja.appendChild(div);
     });
     history.replaceState(null, '', '#' + c.id);
-    pintar();
+    pintar(true);
   }
 
   const inicial = location.hash.slice(1);
