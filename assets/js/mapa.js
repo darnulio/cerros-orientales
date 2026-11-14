@@ -39,6 +39,12 @@
       maxZoom: 16, pane: 'etiquetas'
     }).addTo(mapa);
     mapa.fitBounds(limites, { padding: [8, 8] });
+    // Si el mapa se crea antes de tener tamaño, se reajusta cuando lo tenga.
+    let ajustado = el.offsetWidth > 0 && el.offsetHeight > 0;
+    new ResizeObserver(() => {
+      mapa.invalidateSize();
+      if (!ajustado && el.offsetWidth > 0 && el.offsetHeight > 0) { mapa.fitBounds(limites, { padding: [8, 8] }); ajustado = true; }
+    }).observe(el);
 
     const canvas = document.createElement('canvas');
     canvas.width = grid.nx; canvas.height = grid.ny;
