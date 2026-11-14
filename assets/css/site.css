@@ -215,7 +215,7 @@ details.categoria .controles-variables { display: grid; gap: 10px; padding-botto
   .entra-2 { animation-delay: .08s; }
   .entra-3 { animation-delay: .16s; }
   .entra-4 { animation-delay: .24s; }
-  @keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes subir { from { transform: translateY(22px); } to { transform: none; } }
 }
 
 /* Mapas 3D */
