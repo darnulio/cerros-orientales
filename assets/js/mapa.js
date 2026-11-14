@@ -28,9 +28,15 @@
       scrollWheelZoom: false, zoomControl: op.zoom, attributionControl: true,
       zoomSnap: 0.25
     });
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 18, subdomains: 'abcd',
-      attribution: '&copy; OpenStreetMap &copy; CARTO'
+    // Mapa base gris claro de Esri: no pide clave.
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 16, attribution: 'Mapa base &copy; Esri, HERE, Garmin, OpenStreetMap'
+    }).addTo(mapa);
+    mapa.createPane('etiquetas');
+    mapa.getPane('etiquetas').style.zIndex = 650;
+    mapa.getPane('etiquetas').style.pointerEvents = 'none';
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 16, pane: 'etiquetas'
     }).addTo(mapa);
     mapa.fitBounds(limites, { padding: [8, 8] });
 
