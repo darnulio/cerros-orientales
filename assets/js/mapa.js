@@ -80,7 +80,8 @@
       locale: { 'NavigationControl.ZoomIn': 'Acercar', 'NavigationControl.ZoomOut': 'Alejar', 'NavigationControl.ResetBearing': 'Volver al norte' }
     });
     mapa.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-left');
-    await new Promise(r => mapa.once('load', r));
+    // Basta con que el estilo esté listo; no se espera a que carguen todas las teselas.
+    await new Promise(r => { if (mapa.isStyleLoaded()) r(); else mapa.once('style.load', r); });
 
     let modoActual = '2d';
     function modo(m, animar) {
